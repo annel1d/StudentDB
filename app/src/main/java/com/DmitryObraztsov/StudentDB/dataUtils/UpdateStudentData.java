@@ -66,7 +66,7 @@ public class UpdateStudentData extends AppCompatActivity {
             calendar.setTime(date);
 
             int day = calendar.get(Calendar.DAY_OF_MONTH);
-            int month = calendar.get(Calendar.MONTH);
+            int month = calendar.get(Calendar.MONTH) + 1;
             int year = calendar.get(Calendar.YEAR);
             datePicker.updateDate(year, month, day);
         } catch (ParseException e) {
