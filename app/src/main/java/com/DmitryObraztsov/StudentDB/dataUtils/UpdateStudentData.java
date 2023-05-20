@@ -88,24 +88,24 @@ public class UpdateStudentData extends AppCompatActivity {
         groupNumberAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         editStudentGroupNumber.setAdapter(groupNumberAdapter);
 
-        // Получить идентификатор группы выбранного студента
-        int studentGroupId = getIntent().getIntExtra(UPDATED_GROUP_NUMBER, -1);
-
-        // Найти позицию группы в списке по идентификатору
-        int selectedGroupPosition = -1;
-        for (int i = 0; i < groups.size(); i++) {
-            if (groups.get(i).getId() == studentGroupId) {
-                selectedGroupPosition = i;
-                break;
-            }
-        }
-
-        // Если позиция найдена, установить выбранную позицию в Spinner
-        if (selectedGroupPosition != -1) {
-            editStudentGroupNumber.setSelection(selectedGroupPosition);
-        }
-
-        int finalSelectedGroupPosition = selectedGroupPosition;
+//        // Получить идентификатор группы выбранного студента
+//        int studentGroupId = getIntent().getIntExtra(UPDATED_GROUP_NUMBER, -1);
+//
+//        // Найти позицию группы в списке по идентификатору
+//        int selectedGroupPosition = -1;
+//        for (int i = 0; i < groups.size(); i++) {
+//            if (groups.get(i).getId() == studentGroupId) {
+//                selectedGroupPosition = i;
+//                break;
+//            }
+//        }
+//
+//        // Если позиция найдена, установить выбранную позицию в Spinner
+//        if (selectedGroupPosition != -1) {
+//            editStudentGroupNumber.setSelection(selectedGroupPosition);
+////        }
+//
+//        int finalSelectedGroupPosition = selectedGroupPosition;
         buttonUpdateStudentData.setOnClickListener(view -> {
             String firstName = editFirstName.getText().toString();
             String lastName = editLastName.getText().toString();
@@ -113,17 +113,17 @@ public class UpdateStudentData extends AppCompatActivity {
             int day = datePicker.getDayOfMonth();
             int month = datePicker.getMonth();
             int year = datePicker.getYear();
+            int selectedGroupPosition = editStudentGroupNumber.getSelectedItemPosition();
 
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(year, month, day);
-            Date dateOfBirth = calendar.getTime();
 
-            // Получить идентификатор группы по выбранной позиции в Spinner
-            int selectedGroupId = groups.get(finalSelectedGroupPosition).getId();
+            String dateOfBirth = String.format("%02d.%02d.%04d", day, month, year);
+
+//            // Получить идентификатор группы по выбранной позиции в Spinner
+//            int selectedGroupId = groups.get(finalSelectedGroupPosition).getId();
 
             try {
                 StudentDao studentDao = db.studentDao();
-                studentDao.updateById(updateId, firstName, lastName, patronymic, String.valueOf(dateOfBirth), selectedGroupId);
+                studentDao.updateById(updateId, firstName, lastName, patronymic, String.valueOf(dateOfBirth), groups.get(selectedGroupPosition).getId());
                 errorStudentLabel.setText(SUCCESS_INSERT_TEXT);
             } catch (Exception e) {
                 errorStudentLabel.setText(FAILURE_INSERT_TEXT);
