@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">StudentDB</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="patronymic">Отчество</string>
+    <string name="dbirth">Дата рождения</string>
+    <string name="group">Группа</string>
+    <string name="update">Обновить запись</string>
+    <string name="go_to_groups">Перейти к группам</string>
+    <string name="save_to_room">Сохранить запись</string>
+    <string name="fetch_data">Отобразить записи</string>
+    <string name="students">Students</string>
+    <string name="groups">Groups</string>
+    <string name="group_number">Номер группы</string>
+    <string name="faculty_name">Название факультета</string>
+    <string name="faculty_of_computer_science">Faculty of Computer Science</string>
+    <string name="_10734">10734</string>
+</resources>
